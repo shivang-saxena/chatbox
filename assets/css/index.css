@@ -1,0 +1,421 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  outline: none;
+}
+
+.hide {
+  opacity: 0;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #444;
+}
+
+.container {
+  position: relative;
+  display: block;
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+}
+.container::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+header {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 20px 0 0;
+  overflow: hidden;
+  z-index: 0;
+  border-top: .7rem solid #fd5f00;
+}
+header:before, header:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+header:before {
+  background-image: linear-gradient(to top, #005792 0%, #13334c 100%);
+  z-index: 0;
+}
+header:after {
+  filter: blur(5px);
+  background-attachment: fixed;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: blur 10s linear infinite;
+  overflow: hidden;
+  z-index: -1;
+}
+@keyframes blur {
+  0% {
+    filter: blur(1px);
+  }
+
+  50% {
+    filter: blur(20px);
+  }
+  100% {
+    filter: blur(1px);
+  }
+}
+header nav {
+  position: relative;
+  z-index: 2;
+}
+header nav .logo {
+  position: relative;
+  display: inline-block;
+  width: 3em;
+  /*height: 50px;*/
+  margin: 0;
+  border-radius: 50%;
+  box-shadow: 1px 1px 20px 1px #00000073;
+}
+header nav .logo img {
+  transform: scale(1);
+  animation: scale 750ms ease-in-out;
+}
+@keyframes scale {
+  0% {
+    transform: scale(100);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(0.2);
+  }
+  70% {
+    transform: scale(1);
+  }
+  90% {
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+header nav .subscribe {
+  position: relative;
+  display: inline-block;
+  padding: 15px 0;
+  float: right;
+  animation: slide 1000ms ease;
+}
+header nav .subscribe a {
+  position: relative;
+  margin: 0;
+  padding: 10px 20px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.3);
+  color: 13334c;
+  font-size: 13px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: box-shadow 500ms ease;
+}
+header nav .subscribe a:hover {
+  box-shadow: 0 0 0 transparent;
+}
+@keyframes slide {
+  0% {
+    transform: translateY(-600px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+header blockquote {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  margin: 0;
+  padding: 5px 0 5px 30px;
+  color: white;
+  font-size: 24px;
+  font-weight: 100;
+  line-height: 1.25;
+  letter-spacing: 2px;
+  transform: translate(-50%, -50%);
+  animation: fadeIn 1250ms ease;
+}
+header blockquote:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-color:#fd5f00;
+  animation: height 1000ms ease-in-out;
+}
+@keyframes height {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 10;
+    transform: translate(-50%, -150%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%, 0%);
+  }
+}
+@media screen and (min-width: 768px) {
+  header blockquote {
+    width: 70%;
+  }
+
+}
+@media screen and (min-width: 1024px) {
+  header blockquote {
+    width: 60%;
+  }
+
+}
+header blockquote span {
+  position: relative;
+  display: block;
+  margin: 20px 0 0;
+  font-size: 16px;
+}
+header .date {
+  position: absolute;
+  bottom: 20px;
+  margin: 0;
+  padding: 5px 15px;
+  border: 2px solid white;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+}
+header .date i {
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+section {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 10px 0;
+  z-index: 999;
+}
+section .scroll {
+  position: absolute;
+  right: 50px;
+  top: -20px;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+}
+section .scroll i {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  color: #686eeb;
+  transform: translate(-50%, -100%);
+  animation: down 2s ease infinite;
+  z-index: 9;
+}
+@keyframes down {
+  100% {
+    transform: translate(-50%, -30%);
+    opacity: 0;
+  }
+}
+section .container {
+  width: 80%;
+}
+@media screen and (min-width: 768px) {
+  section .container {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  section .container {
+    width: 50%;
+  }
+}
+
+/*MODAL*/
+
+body.modal-open .background-container{
+    -webkit-filter: blur(4px);
+    -moz-filter: blur(4px);
+    -o-filter: blur(4px);
+    -ms-filter: blur(4px);
+    filter: blur(4px);
+    filter: url("https://gist.githubusercontent.com/amitabhaghosh197/b7865b409e835b5a43b5/raw/1a255b551091924971e7dee8935fd38a7fdf7311/blur".svg#blur);
+filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
+}
+.btn-social
+{
+  min-width: 95px;padding: 8px 12px;
+    font-size: 16px;text-align: center;cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 5px;
+}
+.btn-social:hover
+{
+  color: #fff;
+ background-color:#3b3f8e;
+}
+.standard-margin
+{
+  margin: 30px 0 20px 0;
+  text-align: center;
+}
+.word-with-line{
+  border-bottom: 1px solid #e5e7e8;
+    line-height: .1em;
+    width: 40%;
+    display: inline-block;
+    text-align: center;
+}
+.word-with-line span
+{
+      padding: 0 10px;
+      background: #fff;
+}
+.tabcontent {
+    display: none;
+}
+.modal-header, h4, .close {
+      background-color: #13334c;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+  .modal-button button{
+    background-color:#fd5f00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;   
+  }
+  .modal-button button:hover{
+    background-color:#13334c;
+    color: white;
+  }
+  .modal-body {
+    padding: 20px 30px;
+    max-height: 450px;
+    overflow-y: auto;
+  }
+
+  /*CONTACT*/
+* {
+    box-sizing: border-box;
+}
+
+/* Style inputs */
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color:#f6f6e9;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #3b3f8e;
+}
+
+
+/* Create two columns that float next to eachother */
+.column {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 20px;
+}
+.column-logo {
+    float: left;
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+header nav .box{
+  font-size:5vw;
+  color: white;
+}
+header nav .chat{
+   font-size:2vw;
+   color: white;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+    .column-logo {
+    width: 70%;
+    margin: 0 auto;
+}
+header nav .logo{
+    width: 2em;
+  }
+ header nav .box{
+  font-size:8vw;
+}
+header nav .chat{
+   font-size:3vw;
+}
+}
