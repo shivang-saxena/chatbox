@@ -33,7 +33,9 @@ if(isset($_POST['searchBox']) && strlen($_POST['searchBox'])>2){
               </div>
               </div>
                </div>
-				<?}
+
+				<?php
+				}
 
 				}
 
@@ -43,7 +45,8 @@ if(isset($_POST['searchBox']) && strlen($_POST['searchBox'])>2){
              ?>
 				<div class="card-body flex-column"><small>No Record Found</small></div>
 
-			<?}
+			<?php
+			}
 
 		}
 

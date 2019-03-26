@@ -51,10 +51,10 @@
     <div class="card-body">
     <!-- <form  style="margin-bottom: 2rem" > -->
   <div class="form-row">
-    <div class="col-1 text-center">
+    <div class="col-2 text-center">
       <img src="<?php echo PICPATH; ?>" width="35" height="35" style="border-radius: 50%" alt="">
     </div>
-    <div class="col-9 ">
+    <div class="col-8">
       <input type="hidden" name="comment_id"  placeholder="<?php echo $post['id']?>" />
       <input type="text" class="form-control" placeholder="Post a comment">
     </div>

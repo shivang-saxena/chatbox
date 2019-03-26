@@ -10,7 +10,7 @@ $user_id=$_SESSION['user']['userid'];
 			if(!empty($result)) {
 				$query ="UPDATE posts SET likes = likes + 1 WHERE id='" . $_POST["id"] . "'";
 				$result = $db->insertUpdateDelete($query);	
-				$db->insertUpdateDelete("INSERT INTO notifications (sender,receiver,srcid,type) VALUES ('" . $user_id . "','" . $_POST["userid"] . "','" . $_POST["id"] . "','like')");
+				$db->insertUpdateDelete("INSERT INTO notifications (sender,receiver,srcid,status) VALUES ('" . $user_id . "','" . $_POST["userid"] . "','" . $_POST["id"] . "','like')");
 				echo $query;			
 			}			
 		break;		

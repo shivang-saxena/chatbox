@@ -1,10 +1,20 @@
 
+
 /*COMMON CSS*/
 .alert{
   margin-bottom: 0;
   cursor: pointer;
   border-radius: 0;
 }
+/*Fixed alert box*/
+.AlertFixed{
+  position: fixed;
+  bottom: 0%;
+  display: none;
+  margin:20px;
+  z-index: 1;
+}
+
 .alert:hover{
   background: transparent;
 }
@@ -29,6 +39,9 @@ nav #notificationPanel{
 }
 
 @media screen and (max-width: 600px) {
+  .AlertFixed{
+    width: 80%;
+  }
   nav #searchDialog{
 width: 100%;
 top:6rem;
@@ -47,7 +60,7 @@ left:0rem;
     vertical-align:middle;
     position: relative;
 }
-#ex1 .notiBadge:after{
+/* #ex1 .notiBadge:after{
     content: "0";
     position: absolute;
     background: #fd5f00;
@@ -61,7 +74,7 @@ left:0rem;
     border-radius: 50%;
     color: white;
     border: 1px solid white;
-}
+} */
 
 .profile-card-4 .card-img-block{
     float:left;

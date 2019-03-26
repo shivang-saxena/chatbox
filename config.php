@@ -24,7 +24,8 @@ class db {
 
             // Load configuration there are defined in config.php
             //require_once('app/config/config.php');
-            self::$connection = new mysqli('localhost','root','','livechatbox2');
+            // self::$connection = new mysqli('sql307.epizy.com','epiz_23271570','tz0MVGGp98HQO','epiz_23271570_livechatbox');
+            self::$connection = new mysqli('localhost','root','','livechatbox');
         }
 
         if(self::$connection === false) {

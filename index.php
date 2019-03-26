@@ -9,9 +9,9 @@
 
     <title>ChatBox-Bringing People Closer Together</title>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/bootstrap-3.3.7.css">
     <!-- FONT AWESOME  CSS -->
-<link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.css" rel="stylesheet" >
 <script>
 try{
 Typekit.load({
@@ -41,6 +41,7 @@ catch(e){}
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555; 
+}
     </style>
 
 </head>
@@ -117,17 +118,7 @@ catch(e){}
 
         <div class="modal-body">
           <div id="login-form">
-            <div class="social-login" style="text-align: center;">
-               <a url="" title="Facebook" class="btn btn-social" minimal="true" style="background: #3a5795;">
-        <i class="fa fa-facebook"></i> <span>Facebook</span></a>
-        <!-- <a url="" title="Github" class="btn btn-social" minimal="true" style="background: #444;"><i class="fa fa-github"></i> <span >Github</span></a> -->
-       <a url="" title="Google" class="btn btn-social" minimal="true" style="background: #dd4b39;;"><i class="fa fa-google-plus"></i> <span >Google</span></a>
-            </div>
-           <div class="standard-margin">
-          <div class="word-with-line">
-          <span style="color: #9ca3a8;font-size: 16px;">or</span>
-         </div>
-         </div>
+            
 
           <form onsubmit="return submitlogindata();">
             <div class="alert-box"></div>
@@ -146,7 +137,7 @@ catch(e){}
             
             <div class="modal-button" style="text-align: center;">
               <button  href="#" class="subscribe" id="submitlogin" name="submitlogin" clicked="Logging In..">
-              <span class="glyphicon glyphicon-off"></span> Login</button>
+              <i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
             </div>
              </form>
              
@@ -192,7 +183,7 @@ catch(e){}
             </div>
              <div class="modal-button" style="text-align: center;">
               <button  href="#" class="btn" id="submitregister" name="submitregister">
-              <span class="glyphicon glyphicon-off"></span> Register</button>
+              <i class="fa fa-sign-in" aria-hidden="true"></i> Register</button>
             </div>
              </form>
             <div style="margin: 30px 0 0 0;font-size: 14px;text-align: center;display: block;"><span>Have an account?<a href="#" style="text-decoration: none;" onclick="openCity()">Login</a></span></div>
@@ -206,13 +197,9 @@ catch(e){}
   </div>  <!--Modal End-->
 </body>
 
-<script src='assets/js/jquery-3.3.1.js'></script>
-<script src='assets/js/modal-steps.min.js'></script>
+<script src="assets/js/jquery-3.3.1.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-  $('#myModal2').modalSteps();
-</script>
+<script src="assets/js/bootstrap-3.3.7.js"></script>
     <script>
      function openCity() {
       if($(".modal-header h4").text()[0] == "L")
@@ -266,8 +253,7 @@ catch(e){}
           $(formdata ).each(function(index, obj){
            data[obj.name] = obj.value;
            });
-          //console.log(data);
-            $.ajax({
+           $.ajax({
                 url:'ajax/form.php',
                 cache  :false,
                 type:'post',

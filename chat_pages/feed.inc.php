@@ -243,17 +243,17 @@ $feedarray=$feedobj->getuserfeed(USERID);
   }, 4000);
 }
 
-   var loaded = false; // Stop it from repeating itself
-   var feedshow=true;
-
-   //$(document.body).on('touchmove', onScroll); // for mobile
-   $(window).on('scroll', function(){
- if($(window).scrollTop() >= $('#post-data').offset().top + $('#post-data').outerHeight() - window.innerHeight) {
-  loaded=false;
-  if(!loaded){
+  
+  //Infinte Scroll on feed page
+  var feedshow=true; //stop ajax request when last post arrived
+   var loaded=false;
+  $(window).on('scroll', function(){
+      if($(window).scrollTop()+3 >= $('#post-data').offset().top + $('#post-data').outerHeight() - window.innerHeight) {
+        console.log($('#post-data').offset().top + $('#post-data').outerHeight() - window.innerHeight);
+        if(!loaded){
             var last_id = $(".post-id:last").attr("id");
+            loaded = true; // Stop it from repeating itself
             loadMoreData(last_id);
- 
         }
       }
    }); 

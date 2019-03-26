@@ -2,9 +2,9 @@
 <?php
 $db=new db();
 $sql="SELECT u.user_id,u.name,n.* FROM users u , notifications n
-                WHERE u.user_id = n.sender AND  n.receiver=".USERID." LIMIT 10";
+                WHERE u.user_id = n.sender AND  n.receiver=".USERID." AND u.user_id != ".USERID." LIMIT 10";
 $sql2="SELECT u.user_id,u.name,n.* FROM users u , relationship n
-                WHERE u.user_id = n.action_user_id AND  n.action_user_id=".USERID." LIMIT 10";
+                WHERE u.user_id = n.action_user_id AND  n.action_user_id=".USERID."  LIMIT 10";
 $result=$db->select($sql);
 //$result+=$db->select($sql2);
 if($result){ ?>
