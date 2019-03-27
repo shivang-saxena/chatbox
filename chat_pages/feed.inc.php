@@ -28,13 +28,12 @@ $feedarray=$feedobj->getuserfeed(USERID);
                 <div class="card-header">
                     <span class="font-weight-bold"><i class="fa fa-hashtag" aria-hidden="true"></i>Trending Hashtags</span>
                 </div>
-                
-                    <ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item"><a href="hashtag.php?tag=chatbox">#chatbox</a></li>
-                    <li class="list-group-item"><a href="hashtag.php?tag=social">#social</a></li>
-                    <li class="list-group-item"><a href="hashtag.php?tag=link">#link</a></li>
-                    <li class="list-group-item"><a href="hashtag.php?tag=fblikes">#fblikes</a></li>
-                    <li class="list-group-item"><a href="hashtag.php?tag=college">#college</a></li>   
+                   <?php $hashtags = $feedobj->getTrendingHashtags(); ?>
+                   <ul class="list-group list-group-flush text-center">
+                   <?php foreach ($hashtags as $hashtag): ?>
+                   <li class="list-group-item"><a href="hashtag.php?tag='<?php print_r(ltrim($hashtag['hashtag'], '#'));?>'"><?php print_r($hashtag['hashtag']); ?></a></li>
+                     
+                   <?php endforeach ?>
                      </ul>
       </div>
     </div>
@@ -236,13 +235,7 @@ $feedarray=$feedobj->getuserfeed(USERID);
 </div>
 <script src='assets/js/dashboard.js'></script>
 <script type="text/javascript">
-  function alertremove(){
-  window.setTimeout(function() {
-    $(".alert").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove(); 
-    });
-  }, 4000);
-}
+  
 
   
   //Infinte Scroll on feed page
@@ -277,7 +270,9 @@ $feedarray=$feedobj->getuserfeed(USERID);
                        
                         if (response)
                         {
-                          alert("comment Added!");
+                          $('.AlertFixed').toggle();
+           $('.AlertFixed').text('Comment Added');
+           alertremove();
                           $commentbox.val("");
                           
                          //listComment();

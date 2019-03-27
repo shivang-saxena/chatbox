@@ -5,6 +5,15 @@ current_user_name=$("#loggeduser").attr('name');
 current_user_id=$("#loggeduser").attr('value'); 
 current_user_src=$("#loggeduser").attr('src');
  
+//alertremove
+function alertremove(){
+  window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+  }, 4000);
+}
+
 //Smooth Scroll{
 window.smoothScroll = function(target) {
   var scrollContainer = target;
@@ -133,7 +142,9 @@ function addAsFriend($id,$action,obj){
           type:'post',
           data:{request:postdata},
           success:function(html){
-            alert(html);
+            $('.AlertFixed').toggle();
+           $('.AlertFixed').text(html);
+           alertremove();
           }
       });
   $(obj).parent().parent().fadeOut( 6000 ).remove();

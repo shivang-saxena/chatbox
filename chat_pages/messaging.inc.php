@@ -108,5 +108,7 @@ $obj=new Messaging();
 </div>
 <script src='assets/js/dashboard.js'></script>
 <script type="text/javascript">
+$(document).ready(windowsize);
+    $('.instName').hide();
     $( ".navbar-nav li:nth-child(3)" ).addClass('active');
 </script>

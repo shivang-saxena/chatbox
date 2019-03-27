@@ -11,10 +11,10 @@ $pass1=$newtxt[1];
 $pass=md5($pass1);
 // $email="Shivang5198@glmail.com";
 // $pass1="Shivang123";
-$result = $db->select("SELECT name,user_id,picpath FROM users WHERE (email='$email' OR username='$email') AND password='$pass1'");
+$result = $db->select("SELECT name,user_id,picpath,belong FROM users WHERE(email='$email' OR username='$email') AND password='$pass1'");
 if($result)
 {
-	$_SESSION['user']=array('name'=>$result[0]['name'],'userid'=>$result[0]['user_id'],'picpath'=>$result[0]['picpath']);
+	$_SESSION['user']=array('name'=>$result[0]['name'],'userid'=>$result[0]['user_id'],'picpath'=>$result[0]['picpath'],'belong'=>$result[0]['belong']);
     echo 'success';
 }
 else
@@ -34,6 +34,7 @@ if(isset($_POST['register'])){
   $gender=$formdata->gender;
   $mobno="";
   $city=$formdata->city;
+  $belong = isset($formdata->chbxInst) ? $formdata->chbxInst:0;
 	$date=date("jS F Y h:i:s A");
   
   if($gender == "Male")
@@ -59,7 +60,8 @@ if(isset($_POST['register'])){
               city = '$city',
               picpath = '$pic', 
               status = '1',
-              time = '$date'");
+              time = '$date',
+              belong ='$belong' ");
     if (!$result){
         error('A database error occurred in processing your '.
               'submission.' . $sql);

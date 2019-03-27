@@ -1,3 +1,4 @@
+<?php require('config.php');?>
 <!DOCTYPE html>
 <html >
 <head>
@@ -152,6 +153,11 @@ catch(e){}
             <div class="alert-box">
               
             </div>
+            <div class="form-group text-center">
+            <div class="checkbox">
+            <label><input type="checkbox" value="" onclick="$('#chbxInst').toggle(); ">Do you belong to an institute?</label>
+            </div>
+          </div>
             <div class="form-group">
               <input type="text" class="form-control" id="txtname" name="txtname" placeholder="Your Name" pattern="[A-Za-z].{3,}" title="Three Letter Name" required="">
           </div>
@@ -179,6 +185,21 @@ catch(e){}
               <option value="Lucknow">Lucknow</option>
               <option value="Mumbai">Mumbai</option>
               <option value="Pune">Pune</option>
+              </select>
+            </div>
+            
+             <?php 
+             $db = new db();
+             $res = $db->select("SELECT * FROM `institute`");
+             ?>
+            <div class="form-group" id="chbxInst" style="display:none">
+              <select name="chbxInst" class="form-control">
+              <option value="">Select Institute</option>
+
+              <?php foreach($res as $ins):?>
+              <option value="<?php echo $ins['id']; ?>"><?php echo $ins['institutename']; ?></option>
+              <?php endforeach ?>
+
               </select>
             </div>
              <div class="modal-button" style="text-align: center;">

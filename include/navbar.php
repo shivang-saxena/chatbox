@@ -52,4 +52,14 @@
 </nav>
 <div class="alert alert-success AlertFixed" role="alert">
   
+</div>  
+
+<?php
+$db = new db();
+$res = $db -> select("SELECT * FROM `institute` WHERE (id = ".$_SESSION['user']['belong'].")");
+?>
+<?php if($res) {?>
+<div class="text-center instName">
+<div class="alert"><b style="color:#fd5f00"><?php print_r($res[0]['institutename']); ?></b></div>
 </div>
+<?php } ?>

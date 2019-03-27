@@ -102,13 +102,13 @@ $obj=new MyNetwork();
                 <div class="card-header">
                     <span class="font-weight-bold"><i class="fa fa-hashtag" aria-hidden="true"></i>Trending Hashtags</span>
                 </div>
-                
-                    <ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item"><a href="hashtag.php?tag=chatbox">#chatbox</a></li>
-                    <li class="list-group-item"><a href="hashtag.php?tag=social">#social</a></li>
-                    <li class="list-group-item"><a href="hashtag.php?tag=link">#link</a></li>
-                    <li class="list-group-item"><a href="hashtag.php?tag=fblikes">#fblikes</a></li>
-                    <li class="list-group-item"><a href="hashtag.php?tag=college">#college</a></li>   
+                <?php $feedobj=new MyFeed(); ?>
+                <?php $hashtags = $feedobj->getTrendingHashtags(); ?>
+                   <ul class="list-group list-group-flush text-center">
+                   <?php foreach ($hashtags as $hashtag): ?>
+                   <li class="list-group-item"><a href="hashtag.php?tag='<?php print_r(ltrim($hashtag['hashtag'], '#'));?>'"><?php print_r($hashtag['hashtag']); ?></a></li>
+                     
+                   <?php endforeach ?>
                      </ul>
                
       </div>
@@ -138,7 +138,9 @@ $obj=new MyNetwork();
             type:'post',
             data:{rqststatus:postdata},
             success:function(html){
-              alert(html);
+              $('.AlertFixed').toggle();
+           $('.AlertFixed').text(html);
+           alertremove();
             }
         });
     createchat(id);

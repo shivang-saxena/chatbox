@@ -16,10 +16,12 @@ define("PICPATH",$_SESSION['user']['picpath'], true);
 class  MyNetwork
 {
 	//userid of current login user in session
-	private $uid;
+  private $uid;
+  private $instid;
 	function __construct()
 	{
-		$this->uid=$_SESSION['user']['userid'];
+    $this->uid=$_SESSION['user']['userid'];
+    $this->instid=$_SESSION['user']['belong'];
 		
 	}
     public function getInvitations(){
@@ -40,13 +42,13 @@ class  MyNetwork
 
     public function displayUsers(){
     	$db = new db();
-        $result = $db->select("SELECT user_id,name,city,picpath FROM users WHERE user_id != '$this->uid'");
+        $result = $db->select("SELECT user_id,name,city,picpath FROM users WHERE user_id != '$this->uid' AND belong = '$this->instid'");
         return $result;
     }
 
     public function cardDisplayUsers(){
       $db = new db();
-        $result = $db->select("SELECT user_id,name,city,picpath FROM users WHERE user_id != '$this->uid' ORDER BY rand() LIMIT 3");
+        $result = $db->select("SELECT user_id,name,city,picpath FROM users WHERE user_id != '$this->uid' AND belong = '$this->instid' ORDER BY rand() LIMIT 3");
         return $result;
     }
 
@@ -105,14 +107,19 @@ class  MyFeed extends ImageUpload
 	private $uid;
 	function __construct()
 	{
-		$this->uid=$_SESSION['user']['userid'];
+    $this->uid=$_SESSION['user']['userid'];
+    $this->instid=$_SESSION['user']['belong'];
 		
 	}
   
-
+    public function getTrendingHashtags(){
+      $db = new db();
+        $result = $db->select("SELECT hashtag FROM `hashtags` WHERE belong = '$this->instid' ORDER BY trendCount DESC LIMIT 5");
+            return $result;
+    }
     public function getFeed(){
     	$db = new db();
-        $result = $db->select("SELECT t1.*,t2.user_id,t2.name,t2.picpath,t2.city FROM posts t1,users t2 WHERE t1.user_id=t2.user_id AND t1.status='1' ORDER BY t1.id DESC LIMIT 3");
+        $result = $db->select("SELECT t1.*,t2.user_id,t2.name,t2.picpath,t2.city FROM posts t1,users t2 WHERE t1.user_id=t2.user_id AND t1.status='1' AND t1.belong = '$this->instid' ORDER BY t1.id DESC LIMIT 3");
             return $result;
     }
 
@@ -133,7 +140,7 @@ class  MyFeed extends ImageUpload
         $ip=$_SERVER['REMOTE_ADDR'];
         $message = '';
         $db=new db();
-        $query="INSERT INTO posts (user_id,path,imgname,body,status,created_at,updated_at) VALUES ('$this->uid','$path','$imgname','$text','1','$date','$date')";
+        $query="INSERT INTO posts (user_id,path,imgname,body,status,created_at,updated_at ,belong) VALUES ('$this->uid','$path','$imgname','$text','1','$date','$date','$this->instid')";
         $result = $db->insertUpdateDelete($query);
         if($result){
             $message=true;
