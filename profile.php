@@ -69,6 +69,8 @@ $friendarray=$getfriends->getFriendList($id);
                           </button>
                           </div>
                           <div class="modal-body">
+
+
                           <form id="editprofileForm">
                             <div id="profilemsg"></div>
                            <div id="profileimgpreview"><img src="<?php echo $result[0]['picpath'];?>" alt="profile-image" class="profile" style="position: static" /></div>
@@ -316,21 +318,25 @@ $friendarray=$getfriends->getFriendList($id);
 <script type="text/javascript" src="assets/js/dashboard.js"></script>
 <script type="text/javascript">
   $('#OpenPImgUpload').click(function(){ $('#upldProfilepic').trigger('click'); });
-  $("#btnUpdate").click(function(){
-    var form=$("#editprofileForm").serialize();
-
+  $("#editprofileForm").submit(function(){
+    var file_data = $('#upldProfilepic').prop('files')[0];
+    // var form=$("#editprofileForm").serialize();
+    var formData = new FormData($(this)[0]); 
+    formData.append('file', file_data);
+    console.log(formData);
     $.ajax({
-         url: 'ajax/editprofile.php',
-      
-        cache: false,
+        url: 'ajax/editprofile.php',
         type: 'post',
-        data: form,
+        data: formData,
+        async: false,
         success: function(response){
 
          $('#profilemsg').html('<b style="color:green">'+response+'</b>')
 
-        }
-
+        },
+        cache: false,
+        contentType: false,
+        processData: false
       });
     return false;
   });

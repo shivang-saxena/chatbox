@@ -8,7 +8,9 @@ $username=$_POST['inputUsername3'];
 $mobile=$_POST['inputMobile3'];
 $city=$_POST['inputSelect3'];
 $userid=USERID;
-if(!empty($_FILES['upldProfilepic'])) {
+if(!empty($_FILES['file'])) {
+  $uploadobj=new ImageUpload();
+  $message = '';
     $file = $uploadobj->uploadFile('file', true, true);
         if (is_array($file['error'])) {
         foreach ($file['error'] as $msg) {
@@ -16,7 +18,7 @@ if(!empty($_FILES['upldProfilepic'])) {
         }
         }
          else {
-        $image='assets/image-profile-pic/'.$file['filename'];
+        $image='assets/images/post-images/'.$file['filename'];
         $query="UPDATE users SET name='{$name}', email='{$email}', about='{$about}', username='{$username}', mobno='{$mobile}', city='{$city}', picpath='{$image}' WHERE user_id='{$userid}'";
         $result = $db->insertUpdateDelete($query);
         if($result){

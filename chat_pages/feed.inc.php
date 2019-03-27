@@ -58,6 +58,7 @@ $feedarray=$feedobj->getuserfeed(USERID);
     <span style="position: relative;" id="imgpreview"></span>
   </div>
   </div>
+  <div class="progress" style="display:none"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0"aria-valuemax="100" style="width: 100%"></div></div>
 </div>
 
 <div id="post-data">
@@ -308,7 +309,7 @@ $feedarray=$feedobj->getuserfeed(USERID);
       return false;
     }
     else{
-      $('#feedpost').append('<div class="alert"><div class="progress"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0"aria-valuemax="100" style="width: 100%"></div></div></div>');
+      $('.progress').show();
       alertremove();
      $.ajax({
         url: 'ajax/fileupload.php', // point to server-side PHP script 
@@ -319,6 +320,7 @@ $feedarray=$feedobj->getuserfeed(USERID);
         type: 'post',
         data: form_data,                         
         success: function(php_script_response){
+          $('.progress').hide();
             $('#feedpost').append('<div class="alert alert-success" role="alert"><i class="fa fa-check" aria-hidden="true"></i>'+php_script_response+'</div>');
         alertremove();
         }

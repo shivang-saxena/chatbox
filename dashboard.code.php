@@ -1,3 +1,4 @@
+<?php error_reporting(0); ?>
 <?php require('config.php');?>
 <?php
 if (!isset($_SESSION['user']))
