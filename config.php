@@ -7,6 +7,13 @@ session_start();
 
 define ('ROOT_PATH', realpath(dirname(__FILE__)));
 define('BASE_URL', 'http://localhost:8000/MyWeb/blog/');
+//Get Heroku ClearDB connection information
+$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$cleardb_server = $cleardb_url["host"];
+$cleardb_username = $cleardb_url["user"];
+$cleardb_password = $cleardb_url["pass"];
+$cleardb_db = substr($cleardb_url["path"],1);
+// mysql://b08950d7d1da9b:6ca6c455@us-cdbr-east-05.cleardb.net/heroku_27f5a802d138603?reconnect=true
 
 
 class db {
@@ -24,8 +31,8 @@ class db {
 
             // Load configuration there are defined in config.php
             //require_once('app/config/config.php');
-            // self::$connection = new mysqli('sql307.epizy.com','epiz_23271570','tz0MVGGp98HQO','epiz_23271570_livechatbox');
-            self::$connection = new mysqli('localhost','root','','livechatbox');
+            self::$connection = new mysqli($cleardb_server,$cleardb_username,$cleardb_password,$cleardb_db);
+//             self::$connection = new mysqli('localhost','root','','livechatbox');
         }
 
         if(self::$connection === false) {
